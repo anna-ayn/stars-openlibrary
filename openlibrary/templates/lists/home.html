@@ -36,7 +36,16 @@ $var title: $_('Lists')
                         <div class="cover">
                             $ cover = list.get_cover() or list.get_default_cover()
                             $ cover_url = cover and cover.url("S") or "/images/icons/avatar_book-sm.png"
-                            <img src="$cover_url" alt=""/>
+                            <!-- Get the original width and height of cover image-->
+                            $ cover_width = cover.width()
+                            $ cover_height = cover.height()
+                            <!-- Get the aspect ratio of cover image for resizing -->
+                            $ cover_aspect_ratio = cover_width and cover_height and cover_width / cover_height
+                            <!-- Calculate the width of cover image for 58px height (58px is the height of each cover image of size S) -->
+                            $ cover_width_for_58px_height = cover_aspect_ratio and int(58 * cover_aspect_ratio)
+                            <!-- Calculate the height of cover image for 25px width (25px is the width of each cover image in list view) -->
+                            $ cover_height_for_25px_width = cover_width_for_58px_height and round(1450 / cover_width_for_58px_height)
+                            <img src="$cover_url" alt="" width="25px" height="$cover_height_for_25px_width" />
                         </div>
                         $list.name
                     </a>
