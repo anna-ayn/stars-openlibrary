@@ -4,13 +4,13 @@
       <template v-slot:cover-label="{book}">
         <slot name="cover-label" v-bind:book="book"/>
       </template>
-
-      <template v-slot:cover="{book}"> 
-        <div class="cover-container"> 
-          <slot name="cover" v-bind:book="book"> 
-              <img :src="`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`" alt="Cover" class="cover"/> 
-          </slot> 
-        </div> 
+      
+      <template v-slot:cover="{book}">
+        <div class="cover-container">
+          <slot name="cover" v-bind:book="book">
+            <img :src="`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`" alt="Cover" class="cover"/>
+          </slot>
+        </div>
       </template>
 
       <template #book-end-start>
